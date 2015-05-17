@@ -41,5 +41,12 @@ angular.module('flapperNews', ['ui.router'])
     $scope.incrementUpvotes = function(post) {
       post.upvotes += 1;
     }
-  }]);
+  }])
+  .controller('PostsCtrl', [
+    '$scope',
+    '$stateParams',
+    'posts',
+    function($scope, $stateParams, posts){
+
+    }])
 
