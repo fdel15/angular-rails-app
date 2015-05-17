@@ -12,4 +12,7 @@
     "test",
     "tests"
   ]
+},
+{
+  "directory":"vendor/assets/bower_components"
 }
