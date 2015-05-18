@@ -6,10 +6,11 @@ app.controller('PostsCtrl', [
       $scope.post = post
       $scope.addComment = function(){
         if($scope.body === '') { return; }
-        $scope.post.comments.push({
+        posts.addComment(post.id, {
           body: $scope.body,
           author: 'user',
-          upvotes: 0
+        }).success(function(comment){
+          $scope.post.comments.push(comment);
         });
         $scope.body = '';
       };
