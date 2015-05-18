@@ -8,8 +8,10 @@
   </head>
 
 <body ng-app="flapperNews">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% unless flash.empty? %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  <% end %>
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div ng-include="'nav/_nav.html'"></div>
