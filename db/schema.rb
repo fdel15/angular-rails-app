@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150518051410) do
   create_table "posts", force: :cascade do |t|
     t.string  "title"
     t.string  "link"
-    t.integer "upvotes"
+    t.integer "upvotes", default: 0
   end
 
 end
