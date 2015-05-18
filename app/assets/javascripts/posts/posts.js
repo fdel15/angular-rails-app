@@ -1,4 +1,4 @@
-app.factory('posts', [function(){
+app.factory('posts', ['$http', function($http){
     var o = {
       posts: []
     };
