@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    respond_with Post.create(post_params.merge(user_id: curret_user.id))
+    respond_with Post.create(post_params.merge(user_id: current_user.id))
   end
 
   def show
