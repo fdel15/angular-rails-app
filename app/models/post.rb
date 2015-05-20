@@ -4,6 +4,6 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   def as_json(options= {})
-    super(options.merge(include: [:user, :votes, comments: { include: :user}]))
+    super(options.merge(include: [:user, :votes, comments: { include: [:user, :votes]}]))
   end
 end
