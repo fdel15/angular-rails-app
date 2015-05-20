@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519001830) do
+ActiveRecord::Schema.define(version: 20150520190436) do
 
   create_table "comments", force: :cascade do |t|
     t.string  "body"
-    t.integer "upvotes"
+    t.integer "upvotes", default: 0
     t.integer "post_id"
     t.integer "user_id"
   end
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150519001830) do
   create_table "posts", force: :cascade do |t|
     t.string  "title"
     t.string  "link"
-    t.integer "upvotes", default: 0
     t.integer "user_id"
   end
 
@@ -45,5 +44,13 @@ ActiveRecord::Schema.define(version: 20150519001830) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+  end
+
+  add_index "votes", ["post_id", "user_id"], name: "index_votes_on_post_id_and_user_id", unique: true
 
 end
