@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def upvote
     post = Post.find(params[:id])
-    post.increment!(:upvotes)
+    post.votes.find_or_create_by(user_id: current_user.id)
 
     respond_with post
   end
