@@ -6,7 +6,7 @@
     </h3>
   </div>
 
-  <div ng-repeat="comment in post.comments | orderBy: '-upvotes'">
+  <div ng-repeat="comment in post.comments | orderBy: '-votes.length'">
     <span class ="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
     {{ comment.votes.length }} - by {{ comment.user.username }}
     <span style="font-size:20px; margin-left:10px;">{{ comment.body }}</span>
