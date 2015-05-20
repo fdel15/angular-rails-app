@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :comments
+  has_many :votes
   belongs_to :user
 
   def as_json(options= {})
