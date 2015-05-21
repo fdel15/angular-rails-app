@@ -8,10 +8,31 @@ class CommentsController < ApplicationController
     respond_with post, comment
   end
 
+  def downvote
+    post = Post.find(params[:post_id])
+    comment = post.comments.find(params[:id])
+    vote = post.comment.votes.find_by(user_id: current_user.id)
+    if vote && vote.vote_type == "up"
+      vote.destroy
+      comment = Comment.find(comment.id)
+    else
+      comment.votes.find_or_create_by(user_id: current_user.id)
+    end
+
+    respond_with post, comment
+  end
+
   def upvote
     post = Post.find(params[:post_id])
     comment = post.comments.find(params[:id])
-    comment.votes.find_or_create_by(user_id: current_user.id)
+    vote = comment.votes.find_by(user_id: current_user.id)
+
+    if vote && vote.vote_type == "down"
+      vote.destroy
+      comment = Comment.find(comment.id)
+    else
+      comment.votes.find_or_create_by(user_id: current_user.id)
+    end
 
     respond_with post, comment
   end
