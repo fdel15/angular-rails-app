@@ -8,8 +8,9 @@
 
   <div ng-repeat="comment in post.comments | orderBy: '-number_of_votes'">
     <span class ="glyphicon glyphicon-thumbs-down" ng-click="incrementDownvotes(comment)"></span>
-    {{ comment.number_of_votes }} - by {{ comment.user.username }}
+    {{ comment.number_of_votes }}
     <span class ="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(comment)"></span>
+    by {{ comment.user.username }}
     <span style="font-size:20px; margin-left:10px;">{{ comment.body }}</span>
   </div>
 
