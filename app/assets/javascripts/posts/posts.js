@@ -36,7 +36,7 @@ app.factory('posts', ['$http', function($http){
     o.upvoteComment = function(post, comment) {
       return $http.post('/posts/' + post.id + '/comments/' + comment.id + '/upvote.json')
         .success(function(data){
-          comment.votes.length = data.votes.length;
+          comment.number_of_votes = data.number_of_votes;
         });
     }
     return o;
