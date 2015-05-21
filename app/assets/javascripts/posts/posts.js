@@ -38,12 +38,12 @@ app.factory('posts', ['$http', function($http){
         .success(function(data){
           comment.number_of_votes = data.number_of_votes;
         });
-    }
+    };
     o.downvoteComment = function(post, comment) {
-      return $http:post('/posts/' + post.id + '/comments/' + comment.id + '/downvote.json')
+      return $http.post('/posts/' + post.id + '/comments/' + comment.id + '/downvote.json')
         .success(function(data){
           comment.number_of_votes = data.number_of_votes
-        })
+        });
     }
     return o;
   }])
