@@ -16,7 +16,12 @@ class PostsController < ApplicationController
 
   def upvote
     post = Post.find(params[:id])
-    post.votes.find_or_create_by(user_id: current_user.id)
+    vote = post.votes.find_by(user_id: current_user.id)
+    if vote
+      vote.vote_type = "up"
+    else
+      post.votes.create(user_id: current_user.id)
+    end
 
     respond_with post
   end
