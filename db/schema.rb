@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20150520190436) do
 
   create_table "comments", force: :cascade do |t|
     t.string  "body"
-    t.integer "upvotes", default: 0
     t.integer "post_id"
     t.integer "user_id"
   end
