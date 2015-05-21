@@ -4,6 +4,7 @@ class CreateVotes < ActiveRecord::Migration
       t.references :post
       t.references :comment
       t.references :user
+      t.string :vote_type, default: "up"
       t.index [:post_id, :user_id], unique: true
     end
   end

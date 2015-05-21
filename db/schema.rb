@@ -47,7 +47,9 @@ ActiveRecord::Schema.define(version: 20150520190436) do
 
   create_table "votes", force: :cascade do |t|
     t.integer "post_id"
+    t.integer "comment_id"
     t.integer "user_id"
+    t.string  "type",       default: "Up"
   end
 
   add_index "votes", ["post_id", "user_id"], name: "index_votes_on_post_id_and_user_id", unique: true
