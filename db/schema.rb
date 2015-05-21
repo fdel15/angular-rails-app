@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150520190436) do
     t.integer "post_id"
     t.integer "comment_id"
     t.integer "user_id"
-    t.string  "type",       default: "Up"
+    t.string  "vote_type",  default: "up"
   end
 
   add_index "votes", ["post_id", "user_id"], name: "index_votes_on_post_id_and_user_id", unique: true
