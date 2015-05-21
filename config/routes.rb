@@ -6,11 +6,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:show, :create] do
       member do
         post '/upvote' => 'comments#upvote'
+        post '/downvote' => 'comments#downvote'
       end
     end
 
     member do
       post '/upvote' => 'posts#upvote'
+      post '/downvote' => 'posts#downvote'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
