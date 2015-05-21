@@ -11,12 +11,13 @@ class CommentsController < ApplicationController
   def downvote
     post = Post.find(params[:post_id])
     comment = post.comments.find(params[:id])
-    vote = post.comment.votes.find_by(user_id: current_user.id)
+    vote = comment.votes.find_by(user_id: current_user.id)
+
     if vote && vote.vote_type == "up"
       vote.destroy
       comment = Comment.find(comment.id)
     else
-      comment.votes.find_or_create_by(user_id: current_user.id)
+      comment.votes.find_or_create_by(user_id: current_user.id, vote_type: "down")
     end
 
     respond_with post, comment
