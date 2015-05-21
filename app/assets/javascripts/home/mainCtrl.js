@@ -13,5 +13,9 @@ app.controller('MainCtrl', ['$scope', 'posts', function($scope, posts){
 
     $scope.incrementUpvotes = function(post) {
       posts.upvote(post);
+    };
+
+    $scope.incrementDownvotes = function(post) {
+      posts.downvote(post);
     }
   }])
