@@ -19,7 +19,7 @@ app.factory('posts', ['$http', function($http){
        });
     }
     o.downvote = function(post) {
-      return $http.post('/posts' + post.id + '/downvote.json')
+      return $http.post('/posts/' + post.id + '/downvote.json')
         .success(function(data){
           post.number_of_votes = data.number_of_votes
         })
