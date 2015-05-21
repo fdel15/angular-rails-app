@@ -15,7 +15,7 @@ app.factory('posts', ['$http', function($http){
     o.upvote = function(post) {
       return $http.post('/posts/' + post.id + '/upvote.json')
        .success(function(data){
-        post.votes.length = data.votes.length;
+        post.number_of_votes = data.number_of_votes;
        });
     }
     o.get_single_post = function(id) {
