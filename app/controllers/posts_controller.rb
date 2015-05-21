@@ -14,13 +14,27 @@ class PostsController < ApplicationController
     respond_with Post.find(params[:id])
   end
 
+  def downvote
+    post = Post.find(params[:id])
+    vote = post.votes.find_by(user_id: current_user.id)
+    if vote && vote.vote_type == "up"
+      vote.destroy
+      post = Post.find(params[:id])
+    else
+      post.votes.find_or_create_by(user_id: current_user.id, vote_type: "down")
+    end
+
+    respond_with post
+  end
+
   def upvote
     post = Post.find(params[:id])
     vote = post.votes.find_by(user_id: current_user.id)
-    if vote
-      vote.vote_type = "up"
+    if vote && vote.vote_type == "down"
+      vote.destroy
+      post = Post.find(params[:id])
     else
-      post.votes.create(user_id: current_user.id)
+      post.votes.find_or_create_by(user_id: current_user.id)
     end
 
     respond_with post
