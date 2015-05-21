@@ -18,6 +18,12 @@ app.factory('posts', ['$http', function($http){
         post.number_of_votes = data.number_of_votes;
        });
     }
+    o.downvote = function(post) {
+      return $http.post('/posts' + post.id + '/downvote.json')
+        .success(function(data){
+          post.number_of_votes = data.number_of_votes
+        })
+    }
     o.get_single_post = function(id) {
       return $http.get('/posts/' + id + '.json').then(function(res){
         return res.data;
