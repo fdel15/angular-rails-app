@@ -3,6 +3,10 @@ class Post < ActiveRecord::Base
   has_many :votes
   belongs_to :user
 
+  validates_presence_of :title, :link, :user_id
+  validates_uniqueness_of :link
+
+
   def as_json(options= {})
     super(options.merge(include: [:user, :votes, comments: { include: [:user, :votes], methods: :number_of_votes}], methods: :number_of_votes))
   end
