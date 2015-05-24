@@ -7,7 +7,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    respond_with Post.create(post_params.merge(user_id: current_user.id))
+    @post = Post.new(post_params.merge(user_id: current_user.id))
+
+    if @post.save
+      respond_with @post
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
   end
 
   def show

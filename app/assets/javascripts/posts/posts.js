@@ -8,9 +8,15 @@ app.factory('posts', ['$http', function($http){
       });
     };
     o.create = function(new_post) {
-      return $http.post('/posts.json', new_post).success(function(data){
+      return $http.post('/posts.json', new_post)
+        .success(function(data){
         o.posts.push(data);
       })
+        .error(function(err){
+          if(err.link) { alert("Link " + err.link[0])}
+          else if(err.title) { alert("Title " + err.title[0])}
+          else { alert("Whoops! Something went wrong. Please log in and try again.")};
+        })
     }
     o.upvote = function(post) {
       return $http.post('/posts/' + post.id + '/upvote.json')
